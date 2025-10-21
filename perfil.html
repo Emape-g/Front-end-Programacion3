@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Store</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+
+  <body class="flex flex-col min-h-screen bg-gray-100 text-gray-800">
+    <!-- HEADER -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="container mx-auto flex items-center justify-between p-4">
+        <span class="text-xl font-semibold text-green-700">Food Store</span>
+
+        <nav class="hidden md:flex items-center space-x-6">
+          <a href="#" class="hover:text-green-600 transition-colors duration-200">Inicio</a>
+          <a href="#" class="hover:text-green-600 transition-colors duration-200">Mis Pedidos</a>
+          <a href="#" class="hover:text-green-600 transition-colors duration-200">Administración</a>
+
+          <!-- Perfil dinámico -->
+          <a id="user-link" href="perfil.html" class="text-xl text-gray-700 hover:text-green-600 transition-colors">
+            <i class="bi bi-person-circle"></i>
+          </a>
+
+          <!-- Cerrar sesión -->
+          <button
+            id="logout-btn"
+            class="ml-2 text-sm text-gray-600 hover:text-red-600"
+            style="display:none;"
+          >
+            Cerrar sesión
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="flex-grow bg-gradient-to-r from-green-500 to-green-700">
+      <section
+        class="bg-white shadow-lg rounded-2xl p-8 w-[90%] sm:w-[80%] md:max-w-md mx-auto my-16"
+      >
+        <!-- Título -->
+        <h2 id="form-title" class="text-2xl font-bold text-center text-green-700 mb-2">
+          Iniciar Sesión
+        </h2>
+
+        <!-- LOGIN -->
+        <form id="login-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Email</label>
+            <div class="relative">
+              <i class="bi bi-envelope absolute left-3 top-2.5 text-gray-400"></i>
+              <input
+                type="email"
+                id="login-email"
+                class="w-full pl-10 p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="correo@ejemplo.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Contraseña</label>
+            <div class="relative">
+              <i class="bi bi-lock absolute left-3 top-2.5 text-gray-400"></i>
+              <input
+                type="password"
+                id="login-password"
+                class="w-full pl-10 p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="********"
+                required
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition"
+          >
+            Iniciar sesión
+          </button>
+        </form>
+
+        <!-- REGISTRO -->
+        <form id="register-form" class="space-y-4 hidden">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Nombre completo</label>
+            <input
+              type="text"
+              id="register-name"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+              placeholder="Tu nombre"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              id="register-email"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+              placeholder="correo@ejemplo.com"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Contraseña</label>
+            <input
+              type="password"
+              id="register-password"
+              class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+              placeholder="********"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition"
+          >
+            Crear cuenta
+          </button>
+        </form>
+
+        <!-- Cambiar entre formularios -->
+        <p class="text-center text-sm text-gray-600 mt-4">
+          <span id="toggle-text">¿No tenés cuenta?</span>
+          <button
+            id="toggle-btn"
+            class="text-green-600 font-semibold hover:underline"
+          >
+            Registrate aquí
+          </button>
+        </p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-200 py-6 mt-auto">
+      <div class="container mx-auto text-center px-4">
+        <p>&copy; 2025 Food Store. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Script principal -->
+    <script src="app.js"></script>
+  </body>
+</html>
