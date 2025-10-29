@@ -43,5 +43,12 @@ if (userData) {
 // Cerrar sesión
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("user");
-  window.location.href = "/pages/auth/login/login.html";
+  window.location.href = "/src/pages/auth/login/login.html";
+});
+
+userLink.addEventListener("click", (e) => {
+  if (!userData) {
+    e.preventDefault();
+    window.location.href = "/src/pages/auth/login/login.html";
+  }
 });

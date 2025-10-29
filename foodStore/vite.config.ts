@@ -1,19 +1,37 @@
+// vite.config.ts
 import { defineConfig } from "vite";
 import { fileURLToPath, URL } from "node:url";
+import { resolve } from "path";
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+
   build: {
     rollupOptions: {
       input: {
-        main: fileURLToPath(new URL("./index.html", import.meta.url)),
-        adminHome: fileURLToPath(new URL("./src/pages/admin/adminHome/adminHome.html", import.meta.url)),
-        categories: fileURLToPath(new URL("./src/pages/admin/categories/categories.html", import.meta.url)),
-        products: fileURLToPath(new URL("./src/pages/admin/products/products.html", import.meta.url)),
-        orders: fileURLToPath(new URL("./src/pages/admin/orders/orders.html", import.meta.url)),
+        index: resolve(__dirname, "index.html"),
+
+        // STORE
+        storeHome: resolve(__dirname, "src/pages/store/home/home.html"),
+
+        // AUTH
+        login: resolve(__dirname, "src/pages/auth/login/login.html"),
+        register: resolve(__dirname, "src/pages/auth/register/register.html"),
+
+        // ADMIN
+        adminHome: resolve(__dirname, "src/pages/admin/adminHome/adminHome.html"),
+        orders: resolve(__dirname, "src/pages/admin/orders/orders.html"),
+        products: resolve(__dirname, "src/pages/admin/products/products.html"),
+        categories: resolve(__dirname, "src/pages/admin/categories/categories.html"),
       },
     },
   },
 });
+
 
 
 
