@@ -1,8 +1,17 @@
-// pages/store/home/home.ts
+console.log("COMMIT")
 
-const userLink = document.getElementById("user-link") as HTMLAnchorElement;
+export const API = "http://localhost:8080/api";
+
+
+export const loginLink = document.getElementById("login-link") as HTMLAnchorElement;
+export const userBox = document.getElementById("user-box") as HTMLDivElement;
+export const userNameEl = document.getElementById("user-name") as HTMLSpanElement;
+export const logoutBtn = document.getElementById("logout-btn") as HTMLButtonElement;
+export const cartCount = document.getElementById("cart-count") as HTMLSpanElement;
+
+export const userLink = document.getElementById("user-link") as HTMLAnchorElement;
 const userNameSpan = document.getElementById("user-name") as HTMLElement;
-const logoutBtn = document.getElementById("logout-btn") as HTMLButtonElement;
+
 
 // Cargar usuario del Local Storage
 const userData = localStorage.getItem("user");
@@ -15,7 +24,7 @@ if (userData) {
     // Si es un objeto con propiedad .name → usarla
     if (parsed && typeof parsed === "object" && parsed.name) {
       userName = parsed.name;
-    } 
+    }
     // Si es un string simple (como "Juan Pérez") → usarlo directamente
     else if (typeof parsed === "string") {
       userName = parsed;
@@ -43,12 +52,9 @@ if (userData) {
 // Cerrar sesión
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("user");
-  window.location.href = "/src/pages/auth/login/login.html";
+  localStorage.removeItem("id");
+  window.location.href = "../index.html";
 });
 
-userLink.addEventListener("click", (e) => {
-  if (!userData) {
-    e.preventDefault();
-    window.location.href = "/src/pages/auth/login/login.html";
-  }
-});
+
+

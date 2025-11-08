@@ -23,7 +23,7 @@ form.addEventListener("submit", async (event) => {
 
   try {
     const response = await fetch(
-      "https://mckenzie-burthensome-denita.ngrok-free.dev/api/usuarios/login",
+      "http://localhost:8080/api/usuarios/login",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -38,7 +38,8 @@ form.addEventListener("submit", async (event) => {
 
     if (response.ok) {
       localStorage.setItem("user", JSON.stringify(data.nombre));
-      window.location.href = "/index.html";
+      localStorage.setItem("id", JSON.stringify(data.id))
+      window.location.href = "../../../../index.html";
     } else {
       alert(data.message || "Error en el login");
     }
@@ -49,26 +50,5 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
-const fetchlogin = async () => {
-  const response = await fetch(
-    "https://mckenzie-burthensome-denita.ngrok-free.dev/api/usuarios/login",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: emailLog.value,
-        contrasena: passwordLog.value,
-      }),
-    }
-  );
-  const data = await response.json();
-  if (response.ok) {
-    // Guardar el usuario en el Local Storage
-    localStorage.setItem("user", JSON.stringify(data.nombre));
-    // Redirigir al home
-    window.location.href = "/index.html";
-  } else {
-    alert(data.message || "Error en el login");
-  }
-};
+
 

@@ -1,132 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestión de Comidas</title>
 
-    <!-- Tailwind CSS. -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Comidas</title>
 
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
+  <!-- Tailwind CSS. -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Fuente opcional -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-      }
-    </style>
-  </head>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 
-  <body class="flex flex-col min-h-screen bg-gray-100 text-gray-800">
-    <!-- HEADER -->
- <header class="bg-white shadow-md sticky top-0 z-50">
-  <div class="container mx-auto flex items-center justify-between p-4">
-    <!-- Nombre del sitio -->
-    <span class="text-xl font-semibold text-green-700">Comidas Ya</span>
+  <!-- Fuente opcional -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
+</head>
 
-    <nav class="hidden md:flex items-center space-x-6">
-      <a href="/src/pages/store/home/home.html" class="hover:text-green-600 transition">Inicio</a>
-      <a href="#" class="hover:text-green-600 transition">Mis Pedidos</a>
-      <a href="#" class="hover:text-green-600 transition">Administración</a>
+<body class="flex flex-col min-h-screen bg-gray-100 text-gray-800">
+  <!-- HEADER -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <!-- Nombre del sitio -->
+      <span class="text-xl font-semibold text-green-700">Comidas Ya</span>
 
-      <!-- Carrito -->
-      <a href="#" class="text-gray-700 hover:text-green-600 transition">
-        <i class="bi bi-cart3 mr-1"></i>Carrito
-      </a>
+      <nav class="hidden md:flex items-center space-x-6">
+        <a href="./src/pages/store/home/home.html" class="hover:text-green-600 transition">Productos</a>
+        <a href="/src/pages/client/orders/orders.html" class="hover:text-green-600 transition">Mis Pedidos</a>
+        <a href="/src/pages/admin/adminHome/adminHome.html" class="hover:text-green-600 transition">Administración</a>
 
-      <!-- Perfil -->
-      <a
-        id="user-link"
-        href="/pages/auth/login/login.html"
-        class="text-xl text-gray-700 hover:text-green-600 transition flex items-center space-x-2"
-      >
-        <i class="bi bi-person-circle"></i>
-        <span id="user-name" class="hidden font-medium text-gray-700"></span>
-      </a>
+        <!-- Carrito -->
+        <a href="/src/pages/store/cart/cart.html" class="relative hover:text-green-600 flex items-center gap-1">
+          <i class="bi bi-cart3 text-xl"></i>
+          <span id="cart-count"
+            class="absolute -top-2 -right-3 bg-green-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-5 text-center">0</span>
+        </a>
+        <!-- Perfil -->
+        <a id="user-link" href="/src/pages/client/orders/orders.html"
+          class="text-xl text-gray-700 hover:text-green-600 transition flex items-center space-x-2">
+          <i class="bi bi-person-circle"></i>
+          <span id="user-name" class="hidden font-medium text-gray-700"></span>
+        </a>
 
-      <!-- Botón de cerrar sesión -->
-      <button
-        id="logout-btn"
-        class="hidden bg-red-100 text-red-600 hover:bg-red-600 hover:text-white text-sm font-semibold py-1 px-3 rounded-lg transition"
-      >
-        <i class="bi bi-box-arrow-right mr-1"></i>Cerrar sesión
-      </button>
-    </nav>
-  </div>
-</header>
+        <!-- Botón de cerrar sesión -->
+        <button id="logout-btn"
+          class="hidden bg-red-100 text-red-600 hover:bg-red-600 hover:text-white text-sm font-semibold py-1 px-3 rounded-lg transition">
+          <i class="bi bi-box-arrow-right mr-1"></i>Cerrar sesión
+        </button>
+      </nav>
+    </div>
+  </header>
 
 
-    <!-- MAIN -->
-    <main class="flex-grow container mx-auto py-12 px-4">
-      <section class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-green-700 mb-4">
-          Bienvenido a Food Store
-        </h1>
-        <p class="text-gray-600 max-w-2xl mx-auto">
-          Gestiona tus pedidos, reservas y menús de forma rápida y sencilla.
+  <!-- MAIN -->
+  <main class="flex-grow container mx-auto py-12 px-4">
+    <section class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-green-700 mb-4">
+        Bienvenido a Food Store
+      </h1>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Gestiona tus pedidos, reservas y menús de forma rápida y sencilla.
+      </p>
+    </section>
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <!-- Card ejemplo -->
+      <div class="bg-white shadow-md rounded-2xl p-6 text-center hover:shadow-lg transition">
+        <i class="bi bi-basket text-5xl text-green-600 mb-4"></i>
+        <h2 class="text-xl font-semibold mb-2">Gestión de Pedidos</h2>
+        <p class="text-gray-500">
+          Visualiza y controla todos los pedidos de tus clientes fácilmente.
         </p>
-      </section>
-
-      <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        <!-- Card ejemplo -->
-        <div
-          class="bg-white shadow-md rounded-2xl p-6 text-center hover:shadow-lg transition"
-        >
-          <i class="bi bi-basket text-5xl text-green-600 mb-4"></i>
-          <h2 class="text-xl font-semibold mb-2">Gestión de Pedidos</h2>
-          <p class="text-gray-500">
-            Visualiza y controla todos los pedidos de tus clientes fácilmente.
-          </p>
-        </div>
-
-        <div
-          class="bg-white shadow-md rounded-2xl p-6 text-center hover:shadow-lg transition"
-        >
-          <i class="bi bi-calendar-check text-5xl text-green-600 mb-4"></i>
-          <h2 class="text-xl font-semibold mb-2">Reservas</h2>
-          <p class="text-gray-500">
-            Administra las reservas de mesas y evita confusiones en tu negocio.
-          </p>
-        </div>
-
-        <div
-          class="bg-white shadow-md rounded-2xl p-6 text-center hover:shadow-lg transition"
-        >
-          <i class="bi bi-credit-card text-5xl text-green-600 mb-4"></i>
-          <h2 class="text-xl font-semibold mb-2">Pagos</h2>
-          <p class="text-gray-500">
-            Gestiona los métodos de pago y lleva un control de tus ingresos.
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-200 py-6 mt-auto">
-      <div class="container mx-auto text-center">
-        <p>&copy; 2025 Comidas Ya. Todos los derechos reservados.</p>
-        <div class="flex justify-center space-x-4 mt-2">
-          <a href="#" class="hover:text-green-400"
-            ><i class="bi bi-facebook"></i
-          ></a>
-          <a href="#" class="hover:text-green-400"
-            ><i class="bi bi-instagram"></i
-          ></a>
-          <a href="#" class="hover:text-green-400"
-            ><i class="bi bi-whatsapp"></i
-          ></a>
-        </div>
       </div>
-    </footer>
-    <script src="src/app.ts"></script>
-  </body>
+
+      <div class="bg-white shadow-md rounded-2xl p-6 text-center hover:shadow-lg transition">
+        <i class="bi bi-calendar-check text-5xl text-green-600 mb-4"></i>
+        <h2 class="text-xl font-semibold mb-2">Reservas</h2>
+        <p class="text-gray-500">
+          Administra las reservas de mesas y evita confusiones en tu negocio.
+        </p>
+      </div>
+
+      <div class="bg-white shadow-md rounded-2xl p-6 text-center hover:shadow-lg transition">
+        <i class="bi bi-credit-card text-5xl text-green-600 mb-4"></i>
+        <h2 class="text-xl font-semibold mb-2">Pagos</h2>
+        <p class="text-gray-500">
+          Gestiona los métodos de pago y lleva un control de tus ingresos.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-200 py-6 mt-auto">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2025 Comidas Ya. Todos los derechos reservados.</p>
+      <div class="flex justify-center space-x-4 mt-2">
+        <a href="#" class="hover:text-green-400"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="hover:text-green-400"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="hover:text-green-400"><i class="bi bi-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+  <script type="module" src="src/app.ts"></script>
+</body>
+
 </html>

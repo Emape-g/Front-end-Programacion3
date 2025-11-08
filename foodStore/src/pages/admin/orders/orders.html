@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Pedidos — Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between px-6 py-3">
+      <span class="text-xl font-bold text-green-700 flex items-center gap-2">
+        <i class="bi bi-shop-window"></i> Food Store
+      </span>
+
+      <nav class="flex items-center gap-4">
+        <a href="/src/pages/store/home/home.html" class="hover:text-green-600">Tienda</a>
+        <a href="/src/pages/admin/adminHome/adminHome.html" class="hover:text-green-600">Panel Admin</a>
+        <span id="user-name" class="font-semibold text-gray-700"></span>
+        <button id="logout-btn"
+          class="bg-red-100 text-red-600 hover:bg-red-600 hover:text-white text-sm font-semibold py-1 px-3 rounded-lg">
+          Cerrar Sesión
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="flex-1 container mx-auto p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-semibold text-green-700">Gestión de Pedidos</h1>
+
+      <select id="filtroEstado" class="border rounded p-2">
+        <option value="">Todos los pedidos</option>
+        <option value="PENDIENTE">Pendientes</option>
+        <option value="EN_PROCESO">En proceso</option>
+        <option value="ENTREGADO">Entregados</option>
+        <option value="CANCELADO">Cancelados</option>
+      </select>
+    </div>
+
+    <div id="listaPedidos" class="space-y-4">
+      <!-- tarjetas generadas por JS -->
+    </div>
+  </main>
+
+  <!-- MODAL DETALLE -->
+  <div id="modalPedido"
+    class="hidden fixed inset-0 bg-black bg-opacity-50 justify-center items-center z-50">
+    <div class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 relative">
+      <button id="cerrarModal"
+        class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div id="detallePedido">
+        <!-- contenido generado dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./orders.ts"></script>
+</body>
+</html>

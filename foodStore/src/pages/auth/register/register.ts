@@ -38,7 +38,7 @@ console.log({
 });
   try {
     const response = await fetch(
-      "https://mckenzie-burthensome-denita.ngrok-free.dev/api/usuarios/register",
+      "http://localhost:8080/api/usuarios/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
