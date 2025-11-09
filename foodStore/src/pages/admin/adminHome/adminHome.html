@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Home</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Bootstrap Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
+  <!-- Bootstrap Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+  />
 </head>
 
 <body class="flex h-screen bg-gray-100 text-gray-800">
 
-  <!-- SIDEBAR -->
+  <!-- ✅ HEADER GLOBAL -->
+  <header class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <!-- Nombre del sitio -->
+      <span class="text-xl font-semibold text-green-700 flex items-center gap-1">
+        <i class="bi bi-shop"></i> FoodStore
+      </span>
+
+      <nav class="hidden md:flex items-center space-x-6">
+        <a href="/index.html" class="hover:text-green-600 transition">Inicio</a>
+        <a href="/src/pages/store/home/home.html" class="hover:text-green-600 transition">Productos</a>
+        <a href="/src/pages/client/orders/orders.html" class="hover:text-green-600 transition">Mis Pedidos</a>
+
+        <!-- 🔹 Administración (visible solo para admin) -->
+        <a href="/src/pages/admin/adminHome/adminHome.html"
+           id="admin-link"
+           class="hidden hover:text-green-600 transition">Administración</a>
+
+        <!-- 🔹 Carrito -->
+        <a href="/src/pages/store/cart/cart.html"
+           class="relative hover:text-green-600 flex items-center gap-1">
+          <i class="bi bi-cart3 text-xl"></i>
+          <span id="cart-count"
+                class="absolute -top-2 -right-3 bg-green-600 text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
+            0
+          </span>
+        </a>
+
+        <!-- 🔹 Usuario -->
+        <a id="user-link"
+           href="/src/pages/auth/login/login.html"
+           class="text-xl text-gray-700 hover:text-green-600 transition flex items-center space-x-2">
+          <i class="bi bi-person-circle"></i>
+          <span id="user-name" class="hidden font-medium text-gray-700"></span>
+        </a>
+
+        <!-- 🔹 Botón cerrar sesión -->
+        <button id="logout-btn"
+                class="hidden bg-red-100 text-red-600 hover:bg-red-600 hover:text-white text-sm font-semibold py-1 px-3 rounded-lg transition">
+          <i class="bi bi-box-arrow-right mr-1"></i>Cerrar sesión
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ✅ SIDEBAR (sin cambios) -->
   <aside class="w-64 bg-white shadow-lg p-6 hidden md:block border-r border-green-200 mt-16">
-    <h2 class="text-2xl font-bold mb-8 text-green-700">🥗 Comidas Ya</h2>
+    <h2 class="text-2xl font-bold mb-8 text-green-700">🥗 FoodStore</h2>
 
     <nav class="space-y-3">
       <a class="flex items-center gap-2 p-3 rounded-lg bg-green-600 text-white"
@@ -43,49 +88,14 @@
       </a>
 
       <a class="flex items-center gap-2 p-3 rounded-lg hover:bg-gray-200 mt-6 text-green-700"
-         href="/">
+         href="/src/pages/store/home/home.html">
         <i class="bi bi-shop"></i> Ver tienda
       </a>
     </nav>
   </aside>
 
-  <!-- MAIN CONTENT -->
-  <main class="flex-1 flex flex-col">
-
-  <header class="bg-white flex justify-end items-center gap-6 px-6 py-4 shadow-md border-b border-green-200">
-
-  <!-- Link a tienda -->
-  <a href="/" class="text-green-700 hover:text-green-900 font-medium flex items-center gap-1">
-    <i class="bi bi-shop"></i>
-    Tienda
-  </a>
-
-  <!-- Título -->
-  <h1 class="text-lg font-semibold text-green-700 flex items-center gap-1">
-    <i class="bi bi-speedometer2"></i>
-    Panel Admin
-  </h1>
-
-  <!-- Usuario + Logout -->
-  <div class="flex items-center gap-4">
-    <div class="flex items-center gap-1 text-green-700">
-      <i class="bi bi-person-circle text-xl"></i>
-      <span class="font-medium" id="admin-name">Admin</span>
-    </div>
-
-    <button id="logout-btn"
-      class="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded-lg text-sm font-semibold shadow">
-      <i class="bi bi-box-arrow-right"></i>
-      Cerrar Sesión
-    </button>
-  </div>
-
-</header>
-
-
-
-
-    <!-- CARDS -->
+  <!-- ✅ MAIN CONTENT -->
+  <main class="flex-1 flex flex-col mt-16 overflow-y-auto">
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6 p-8">
       <div class="p-6 rounded-xl shadow-md bg-gradient-to-br from-green-500 to-emerald-600 text-white">
         <h3 class="text-lg font-medium">Categorías</h3>
@@ -108,14 +118,11 @@
            href="../orders/orders.html">Gestionar</a>
       </div>
     </section>
-
   </main>
-</div>
 
-<script type="module" src="./adminHome.ts"></script>
-<script type="module" src="/src/app.ts"></script>
-
+  <!-- Scripts -->
+  <script type="module" src="./adminHome.ts"></script>
+  <script type="module" src="/src/app.ts"></script>
 
 </body>
 </html>
-

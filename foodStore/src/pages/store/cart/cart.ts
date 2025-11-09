@@ -25,7 +25,11 @@ function bootHeader() {
   const storedUser = localStorage.getItem("user");
   const userLink = document.getElementById("user-link") as HTMLAnchorElement | null;
 
+  const btnPago = document.getElementById("btnConfirmarPedido") as HTMLButtonElement;
+  const btnLogin = document.getElementById("btnIniciarSesion") as HTMLButtonElement;
+
   if (storedUser) {
+    // --- Usuario logueado ---
     let name = "";
     try {
       const parsed = JSON.parse(storedUser);
@@ -33,17 +37,37 @@ function bootHeader() {
     } catch {
       name = storedUser;
     }
+
     if (userNameEl) {
       userNameEl.textContent = name || "Usuario";
       userNameEl.classList.remove("hidden");
     }
+
     if (userLink) {
       const icon = userLink.querySelector("i");
       if (icon) icon.classList.add("hidden");
     }
+
     if (logoutBtn) logoutBtn.classList.remove("hidden");
+
+    // ✅ Mostrar botón de pagar, ocultar el de login
+    if (btnPago) btnPago.classList.remove("hidden");
+    if (btnLogin) btnLogin.classList.add("hidden");
+
+  } else {
+    // --- Usuario NO logueado ---
+    if (btnPago) btnPago.classList.add("hidden");
+    if (btnLogin) btnLogin.classList.remove("hidden");
+
+    // Si hace clic en "Iniciar sesión" → redirigir al login
+    if (btnLogin) {
+      btnLogin.addEventListener("click", () => {
+        window.location.href = "/src/pages/auth/login/login.html";
+      });
+    }
   }
 
+  // ✅ Botón de logout
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       localStorage.removeItem("user");
@@ -52,10 +76,12 @@ function bootHeader() {
     });
   }
 
+  // ✅ Contador del carrito
   const carrito = JSON.parse(localStorage.getItem("carrito") || "[]");
   const total = carrito.reduce((acc: number, it: any) => acc + (it.cantidad || 1), 0);
   if (cartCount) cartCount.textContent = String(total);
 }
+
 
 // -------------------- FUNCIONES AUXILIARES --------------------
 function getCarrito() {
